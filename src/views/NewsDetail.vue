@@ -1,5 +1,5 @@
 <template>
-    <div class="new-detail">
+    <div class="new-detail-page">
         <div class="title">{{news.title}}</div>
         <mu-divider />
         <div class="conetnt" v-html="news.content"></div>
@@ -28,8 +28,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.new-detail .conetnt img {
+<style>
+.new-detail-page .conetnt img {
     display: block;
     height: auto;
     margin: 0 auto;

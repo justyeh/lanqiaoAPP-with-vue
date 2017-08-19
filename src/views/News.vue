@@ -7,21 +7,21 @@
             <mu-circular-progress class="progress" :size="60" :strokeWidth="5" />
         </template>
         <template v-else>
-            <div class="news-list" ref="newsListContainer">
+           <div class="news-list" ref="listContainer" >
                 <keep-alive>
                     <mu-list>
                         <div v-for="news in newsList" :key="news.id">
                             <mu-list-item :title="news.title" :to="`/news/${news.id}`">
                                 <div class="poster" :style="{backgroundImage:'url('+ (news.img_src || newsImage)+')'}" slot="leftAvatar"></div>
                                 <span slot="describe">
-                                    <span style="color: rgba(0, 0, 0, .87)">{{news.admin || 'lanqiao'}} -</span>{{news.content}}
+                                    <span>{{news.admin || 'lanqiao'}} -</span>{{news.content}}
                                 </span>
                             </mu-list-item>
                             <mu-divider />
                         </div>
                     </mu-list>
                 </keep-alive>
-                <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore" v-show="hasMoreNews" />
+                <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore" v-show="hasMoreNews" loadingText="正在加载..." />
                 <p class="no-news" v-if="!hasMoreNews">没有了</p>
             </div>
         </template>
@@ -31,6 +31,7 @@
 
 <script>
 import API from '../api'
+
 var newsImage = require('../assets/img/news.jpg')
 export default {
     data() {
@@ -51,14 +52,18 @@ export default {
         })
     },
     mounted() {
-        this.scroller = this.$refs.newsListContainer
+        console.log(this.$refs)
+        //this.scroller = this.$refs.listContainer
+        this.scroller = document.getElementById('listContainer')
     },
+    
     methods: {
         loadMore() {
             if (!this.hasMoreNews) {
                 return
             }
 
+            console.log('loadMore')
             this.loading = true;
             this.p++;
 
@@ -76,8 +81,6 @@ export default {
 
                 })
             }, 500)
-
-
         }
     }
 }
@@ -87,6 +90,7 @@ export default {
 .news-list-page .mu-item-title {
     font-size: 14px;
     line-height: 16px;
+    color:#222;
 }
 </style>
 
@@ -110,9 +114,9 @@ export default {
     overflow: auto;
     position: fixed;
     top: 48px;
-    bottom: 56px;
-    left: 0;
-    right: 0;
+    left:0;
+    right:0;
+    bottom:100px;
 }
 
 .poster {

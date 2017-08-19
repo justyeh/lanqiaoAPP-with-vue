@@ -6,14 +6,14 @@
         <mu-divider />
         <mu-list>
             <mu-sub-header>通知设置</mu-sub-header>
-            <mu-list-item title="事件和提醒">
-                <mu-switch slot="right" :value="true" />
+            <mu-list-item title="事件和提醒" @click="updateState('message')">
+                <mu-switch slot="right" v-model="settings.message" />
             </mu-list-item>
-            <mu-list-item disableRipple title="震动" @click="updateState('shake')" >
-                <mu-checkbox :value="shake" slot="left" />
+            <mu-list-item title="震动" @click="updateState('shake')" >
+                <mu-checkbox v-model="settings.shake" slot="right" />
             </mu-list-item>
-            <mu-list-item disableRipple title="声音" @click="updateState('voice')" >
-                <mu-checkbox :value="voice" slot="left" />
+            <mu-list-item title="声音" @click="updateState('voice')" >
+                <mu-checkbox v-model="settings.voice" slot="right" />
             </mu-list-item>
         </mu-list>
     
@@ -38,19 +38,31 @@
 </template>
 
 <script>
+
+const store = require('storejs')
 export default {
     data() {
         return {
             showDialog: false,
             hasNewVersion: true,
             toast: false,
-            shake:true,
-            voice:false
+            settings:{}
+        }
+    },
+    created(){
+        this.settings =  store.get("settings");
+    },
+    watch:{
+        settings:{
+            handler: function(val, oldVal) {
+                store.set('settings',this.settings)
+            },
+            deep: true
         }
     },
     methods: {
         updateState(key){
-            this[key] = !this[key]
+            this.settings[key] =  !this.settings[key]
         },
         checkNewVersion() {
             this.showDialog = true;

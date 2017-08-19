@@ -29,12 +29,18 @@ export default {
 </script>
 
 <style>
-.new-detail-page .conetnt img {
+.new-detail-page img {
     display: block;
     height: auto;
     margin: 0 auto;
     max-width: 100%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.22);
+}
+.new-detail-page * {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !important;
+    line-height: 22px !important;
+    font-size:14px !important;
+    color: #888 !important;
 }
 </style>
 
@@ -49,6 +55,5 @@ export default {
 
 .conetnt {
     padding: 0 10px;
-    line-height: 18px !important;
 }
 </style>

@@ -65,7 +65,9 @@ table {
     width: 100%;
     font-size: 12px;
 }
-
+thead{
+    background:#f5f5f5;
+}
 td,
 th {
     border: 1px solid #eee;

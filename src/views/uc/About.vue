@@ -10,28 +10,17 @@
         </div>
         <div class="info">
             <ul>
-                <li>
-                    主办单位：工业和信息化部人才交流中心
-                </li>
-                <li>
-                    技术支持：蓝桥杯信息技术（北京）有限公司
-                </li>
-                <li>
-                    地址：北京市海淀区万寿路27号院工信部机关18#信箱 邮编: 100846
-                </li>
-                <li>
-                    总机：4006-588-662 传真：010-68208666 京ICP备11024192号
-                </li>
-                <li>
-                    联系邮箱：lanqiao@lanqiao.org
-                </li>
-                <li>
-                    商务合作：010-68208668 sunll@lanqiao.org
-                </li>
+                <li>主办单位：工业和信息化部人才交流中心</li>
+                <li>技术支持：蓝桥杯信息技术（北京）有限公司</li>
+                <li>地址：北京市海淀区万寿路27号院工信部机关18#信箱</li>
+                <li>邮编: 100846</li>
+                <li>总机：4006-588-662</li>
+                <li>传真：010-68208666</li>
+                <li>联系邮箱：lanqiao@lanqiao.org</li>
+                <li>商务合作：010-68208668 sunll@lanqiao.org</li>
             </ul>
         </div>
         <img :src="qrcode" class="qrcode">
-    
     </div>
 </template>
 

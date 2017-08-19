@@ -2,7 +2,7 @@
     <div :class="orderClass">
         <div class="header">
             <p>订单编号:{{order.id}}</p>
-            <p>{{order.state == 1 ? '已支付' : '未支付'}}</p>
+            <p>{{order.state == 1 ? '订单生成失败' : '订单生成失败'}}</p>
         </div>
         <mu-divider/>
         <div class="body">
@@ -12,13 +12,7 @@
         <mu-divider/>
         <div class="footer">
             <p>¥ {{order.price}}</p>
-            <template v-if="order.state == 1">
-                <mu-icon value="done" />
-            </template>
-            <template v-else>
-                <mu-raised-button label="支付" class="demo-raised-button" secondary/>
-            </template>
-    
+            <mu-icon :value="order.state == 1 ? 'done':'close'" />
         </div>
     </div>
 </template>

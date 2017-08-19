@@ -4,7 +4,7 @@
             <div class="header" :style="{backgroundImage:'url('+  headImg +')'}"></div>
             <p class="name">JustYeh</p>
             <mu-icon-menu icon="more_vert" class="drop" iconClass="drop-icon" menuClass="drop-menu" menuListClass="drop-menu-list">
-                <mu-menu-item title="设置" />
+                <mu-menu-item @click="logout" title="退出登录" />
             </mu-icon-menu>
         </div>
         <mu-list>
@@ -43,7 +43,8 @@
 </template>
 
 <script>
-var headImg = require('../assets/img/head.jpg')
+const store = require('storejs')
+const headImg = require('../assets/img/head.jpg')
 
 export default {
     data() {
@@ -53,6 +54,10 @@ export default {
         }
     },
     methods: {
+        logout(){
+            store.remove('user')
+            this.$router.push('/login');
+        }
     }
 }
 </script>

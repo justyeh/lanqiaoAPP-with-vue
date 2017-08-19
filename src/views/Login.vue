@@ -9,34 +9,78 @@
                 <mu-text-field label="密码" hintText="请输入密码" type="password" labelFloat icon="lock_outline" :errorText="errorPassword" v-model="password"/>
             </div>
             <div class="group">
-                <mu-raised-button label="Primary" class="demo-raised-button login-btn" primary @click="login" />
+                <mu-raised-button label="登陆" class="demo-raised-button login-btn" primary @click="login" />
             </div>
         </div>
+        <mu-toast class="toast" v-if="toast" message="登陆失败:账号或密码错误" />
     </div>
 </template>
 
 <script>
-var logo = require('../assets/img/logo.png')
+const store = require('storejs')
+const logo = require('../assets/img/logo.png')
 
 export default {
     data() {
         return {
             logo,
             errorAccount:'',
-            errorPassword:'请输入密码',
-            account:'11',
-            password:''
+            errorPassword:'',
+            account:'',
+            password:'',
+            toast:false
+        }
+    },
+    watch:{
+        account(val){
+            if(val.length > 0){
+                 this.errorAccount = ''
+            }
+        },
+        password(val){
+             if(val.length > 0){
+                 this.errorPassword = ''
+            }
         }
     },
     methods: {
         login() {
-            this.$router.push('/home')
+            if(!this.account){
+                this.errorAccount = '请输入用户名'
+                return
+            }
+            if(!this.password){
+                this.errorPassword = '请输入密码'
+                 return
+            }
+
+            if(this.account == 'justyeh' && this.password == '123456'){
+                store.set('user',{
+                    account:this.account,
+                    password:this.password
+                })
+                this.$router.push(this.$route.query.redirect)
+            }else{
+                this.toast = true
+                setTimeout(() => {
+                    this.toast = false;
+                }, 1000)
+            }
         }
     }
 }
 </script>
 <style>
-
+.login-page .mu-text-field.has-icon{
+    padding-left:32px;
+}
+.login-page .mu-text-field-icon{
+    left:0;
+}
+.login-page .mu-text-field-help,
+.login-page .mu-text-field hr{
+    left:32px !important;
+}
 </style>
 
 <style scoped>
@@ -62,6 +106,19 @@ export default {
 .login-btn {
     width: 256px;
     margin-top:20px;
+    height:40px;
+}
+.toast {
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 250px;
+    background: #04acf7;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
 }
 </style>
 

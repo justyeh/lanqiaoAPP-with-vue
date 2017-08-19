@@ -26,6 +26,7 @@ const NewsDetail = require("./views/NewsDetail.vue");
 const routers = [
     {
         path: "/login",
+        name:'login',
         meta: { navShow: false },
         component: Login
     },

@@ -6,13 +6,21 @@ Vue.config.productionTip = false;
 
 /* router */
 import VueRouter from "vue-router";
+import routes from "./routes";
 const store = require('storejs')
 Vue.use(VueRouter);
 const router = new VueRouter({
     //mode: 'history',
-    routes
+    routes,
+    /*scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    }*/
 });
-/*check login status*/ 
+/*check login status*/
 router.beforeEach((to, from, next) => {
     if (store.has('user') || to.name == 'login') {
         next()
@@ -38,7 +46,6 @@ FastClick.attach(document.body);
 
 /* axios */
 import axios from "axios";
-import routes from "./routers";
 Vue.prototype.$http = axios;
 
 /* vue-carousel */
@@ -46,8 +53,8 @@ import VueCarousel from 'vue-carousel';
 Vue.use(VueCarousel);
 
 /*init app data*/
-import initAppData from './initAppData';
-initAppData()
+import setDataStore from './dataStore';
+setDataStore()
 
 /* eslint-disable no-new */
 new Vue({

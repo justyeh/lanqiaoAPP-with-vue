@@ -36,6 +36,15 @@ const routers = [
         component: Home
     },
     {
+        path: "/match/:id",
+        meta: { navShow: false },
+        component(resolve) {
+            require.ensure(["./views/Match.vue"], () => {
+                resolve(require("./views/Match.vue"));
+            });
+        }
+    },
+    {
         path: "/news",
         meta: { navShow: true },
         component: News

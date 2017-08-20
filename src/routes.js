@@ -27,17 +27,17 @@ const routers = [
     {
         path: "/login",
         name:'login',
-        meta: { navShow: false },
+        meta: { navShow: false},
         component: Login
     },
     {
         path: "/",
-        meta: { navShow: true },
+        meta: { navShow: true},
         component: Home
     },
     {
         path: "/match/:id",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"赛事"},
         component(resolve) {
             require.ensure(["./views/Match.vue"], () => {
                 resolve(require("./views/Match.vue"));
@@ -46,12 +46,12 @@ const routers = [
     },
     {
         path: "/news",
-        meta: { navShow: true },
+        meta: { navShow: true},
         component: News
     },
     {
         path: "/news/:id",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"新闻"},
         component(resolve) {
             require.ensure(["./views/NewsDetail.vue"], () => {
                 resolve(require("./views/NewsDetail.vue"));
@@ -60,12 +60,12 @@ const routers = [
     },
     {
         path: "/uc",
-        meta: { navShow: true },
+        meta: { navShow: true},
         component: Uc
     },
     {
         path: "/uc/order",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"我的订单"},
         component(resolve) {
             require.ensure(["./views/uc/Order.vue"], () => {
                 resolve(require("./views/uc/Order.vue"));
@@ -73,17 +73,8 @@ const routers = [
         }
     },
     {
-        path: "/uc/certificate",
-        meta: { navShow: false },
-        component(resolve) {
-            require.ensure(["./views/uc/Certificate.vue"], () => {
-                resolve(require("./views/uc/Certificate.vue"));
-            });
-        }
-    },
-    {
         path: "/uc/award",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"获奖记录"},
         component(resolve) {
             require.ensure(["./views/uc/Award.vue"], () => {
                 resolve(require("./views/uc/Award.vue"));
@@ -92,7 +83,7 @@ const routers = [
     },
     {
         path: "/uc/auth",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"认证信息"},
         component(resolve) {
             require.ensure(["./views/uc/Auth.vue"], () => {
                 resolve(require("./views/uc/Auth.vue"));
@@ -101,7 +92,7 @@ const routers = [
     },
     {
         path: "/uc/settings",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"账号设置"},
         component(resolve) {
             require.ensure(["./views/uc/Settings.vue"], () => {
                 resolve(require("./views/uc/Settings.vue"));
@@ -110,7 +101,7 @@ const routers = [
     },
     {
         path: "/uc/about",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"关于蓝桥杯"},
         component(resolve) {
             require.ensure(["./views/uc/About.vue"], () => {
                 resolve(require("./views/uc/About.vue"));
@@ -119,7 +110,7 @@ const routers = [
     },
     {
         path: "/uc/message",
-        meta: { navShow: false },
+        meta: { navShow: false,title:"我的消息"},
         component(resolve) {
             require.ensure(["./views/uc/Message.vue"], () => {
                 resolve(require("./views/uc/Message.vue"));
@@ -128,7 +119,7 @@ const routers = [
     },
     {
         path: "*",
-        meta: { navShow: true },
+        meta: { navShow: true},
         component: Home
     }
 ];

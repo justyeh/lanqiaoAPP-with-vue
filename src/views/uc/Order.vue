@@ -1,6 +1,7 @@
 <template>
     <div class="order-page">
-        <mu-tabs :value="activeTab" @change="handleTabChange">
+        <mu-divider />
+        <mu-tabs :value="activeTab" @change="handleTabChange" class="order-tabs">
             <mu-tab value="tab1" title="全部" />
             <mu-tab value="tab2" title="已完成" />
             <mu-tab value="tab3" title="未完成" />
@@ -72,6 +73,9 @@ export default {
 </script>
 
 <style scoped>
+.order-tabs{
+    background:#04acf7;
+}
 .order-list {
     padding: 10px;
 }

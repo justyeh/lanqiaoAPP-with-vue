@@ -1,6 +1,5 @@
 <template>
     <div class="award-page">
-        <h2>获奖记录</h2>
         <div class="table-box">
             <table>
                 <thead>

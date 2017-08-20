@@ -21,7 +21,10 @@ export default {
         getDetail() {
             const id = this.$route.params.id
             this.$http.get(API.getDetail + id).then(res => {
-                this.news = res.data
+                this.news = res.data;
+                /*this.$nextTick(()=>{
+                    this.$route.meta.title = this.news.title
+                })*/
             })
         }
     }

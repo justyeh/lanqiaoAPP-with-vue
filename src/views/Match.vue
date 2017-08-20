@@ -61,12 +61,15 @@ export default {
         }
     },
     activated(){
+       
         this.signInfo = store.get("signInfo").filter(item =>{
             return item.id == this.$route.params.id
         })[0]
         this.matchInfo = matchData.filter(item=>{
            return item.id == this.$route.params.id
         })[0]
+
+        //this.$route.meta.title = this.matchInfo.name
     },
     components:{
         MatchPoster

@@ -92,10 +92,9 @@ export default {
 
 .drop {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
 }
-
 .name {
     color: #fff;
     font-size: 16px;

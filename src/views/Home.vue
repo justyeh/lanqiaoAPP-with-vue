@@ -1,142 +1,98 @@
 <template>
     <div>
-        <carousel :perPage="1">
-            <slide v-for="carsouel in carsouelList" :key="carsouel.urlId">
-                <router-link :to="'/news/'+carsouel.urlId" :style="{backgroundImage:'url('+carsouel.image+')'}" class="poster"></router-link>
-            </slide>
-        </carousel>
-    
-        <div class="col-box">
-            <div class="grow-box">
-                <div>成绩</div>
-                <div>报名</div>
-                <div>赛程</div>
-            </div>
-            <div class="grow-box">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+       <carousel-box :carousel-list="carouselList"></carousel-box>
+        <div class="page-title">赛事</div>
+        <mu-divider />
+        <div class="match-box">
+            <mu-list>
+                <mu-list-item  :to="`/match/${match.id}`" :title="match.name" v-for="match in matchData" :key="match.id">
+                    <mu-icon value="navigate_next" slot="right" /> 
+                </mu-list-item>
+            </mu-list>
         </div>
-    
-        <template>
+        <div class="page-title">赛程</div>
+        <mu-divider />
+        <div class="timeline-box">
             <mu-timeline>
-                <mu-timeline-item>
-                    <span slot="time">2017年 6月 1日</span>
-                    <span slot="des">发起第一个pr</span>
-                </mu-timeline-item>
-                <mu-timeline-item>
-                    <span slot="time">2017年 6月 6日</span>
-                    <span slot="des">发起第一个issue</span>
-                </mu-timeline-item>
-                <mu-timeline-item>
-                    <span slot="time">2017年 6月 12日</span>
-                    <span slot="des">添加backTop组件</span>
-                </mu-timeline-item>
-                <mu-timeline-item>
-                    <span slot="time">2017年 6月 16日</span>
-                    <span slot="des">加入Muse-UI org
-                        <br/>添加breadcrumb组件</span>
-                </mu-timeline-item>
-                <mu-timeline-item>
-                    <span slot="time">2017年 6月 19日</span>
-                    <span slot="des">添加FAQ模块</span>
-                </mu-timeline-item>
-                <mu-timeline-item>
-                    <span slot="time">2017年 6月 20日</span>
-                    <span slot="des">添加Layout</span>
-                </mu-timeline-item>
-                <mu-timeline-item>
-                    <span>更多</span>
+                <mu-timeline-item v-for="item in timeline" :key="item.event">
+                    <div slot="time" class="timeline-time">{{item.time}}<span :class="'type'+item.matchType">{{item.matchType == 1 ? '个人赛' : '团队赛'}}</span></div>
+                    <div slot="des" class="timeline-info">{{item.events}}</div>
                 </mu-timeline-item>
             </mu-timeline>
-        </template>
-    
+        </div>
     </div>
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel';
-import Bus from '../bus'
-
-const banner1 = require("../assets/img/banner1.jpg")
-const banner2 = require("../assets/img/banner2.jpg")
-const banner3 = require("../assets/img/banner3.jpg")
+import CarouselBox from '../components/CarouselBox';
+import matchData from '../matchData'
 
 export default {
     data() {
         return {
-            carsouelList: [
-                {
-                    image: banner1,
-                    urlId: 774,
-                },
-                {
-                    image: banner2,
-                    urlId: 743,
-                },
-                {
-                    image: banner3,
-                    urlId: 772,
-                }
+            matchData,
+            carouselList: [
+                {image:  require("../assets/img/banner1.jpg"),urlId: 774,},
+                {image: require("../assets/img/banner2.jpg"),urlId: 743,},
+                {image: require("../assets/img/banner3.jpg"),urlId: 772,}
+            ],
+            timeline:[
+                {time:'2016.10',events:'省赛报名',matchType:1},
+                {time:'2016.10',events:'团队赛报名',matchType:2},
+                {time:'2016.11',events:'省赛师资培训会',matchType:1},
+                {time:'2016.12',events:'省赛报名截止',matchType:1},
+                {time:'2017.04',events:'省赛举办',matchType:1},
+                {time:'2017.04',events:'团队赛预赛评审',matchType:2},
+                {time:'2017.04',events:'决赛师资培训会',matchType:1},
+                {time:'2017.05',events:'国赛',matchType:1}
             ]
         }
     },
-    destroyed() {
-        Bus.$emit('updateMenu', 'news')
-    },
-    components: {
-        Carousel,
-        Slide
+    components:{
+        CarouselBox
     }
 }
 </script>
 
 <style scoped>
-.poster {
-    display: block;
-    height: 200px;
-    width: 100%;
-    background: no-repeat center / cover;
+.page-title{
+    font-size: 16px;
+    color: #04acf7;
+    line-height: 36px;
+    padding-left: 16px;
+    border-top:solid 15px rgba(0,0,0,0.12);
+}
+.timeline-box{
+    display:flex;
+    justify-content:center;
+    padding:20px 0
+}
+.timeline-time{
+    font-size:14px;
+    color: #5786ab;
+} 
+.timeline-time span{
+    height: 20px;
+    line-height: 20px;
+    width: 52px;
+    text-align: center;
+    color: #fff;
+   
+    font-size: 12px;
+    display: inline-block;
+    margin-left:10px;
+}
+.timeline-time .type1{
+    background: #4aa0e7;
+}
+.timeline-time .type2{
+    background: #01c0c8;
+}
+.timeline-info{
+    color: #5786ab;
+    font-size:14px;
 }
 
-.VueCarousel-pagination {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.VueCarousel-dot-inner {
-    background: rgba(0, 0, 0, 0.5)
-}
-
-VueCarousel-dot--active .VueCarousel-dot-inner {
-    background: red;
-}
-
-.col-box {
-    padding-top: 20px;
-}
-
-.grow-box {
-    display: flex;
-}
-
-.grow-box div {
-    flex: 1;
-    height: 100px;
-    border-style: solid;
-    border-color: #eee;
-    border-width: 0 1px 1px 0;
-}
-
-.grow-box div:last-child {
-    border-right-width: 0;
-}
-
-.col-box .grow-box:last-child div {
-    border-bottom-width: 0;
-}
 </style>
 
 

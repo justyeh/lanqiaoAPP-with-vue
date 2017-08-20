@@ -53,8 +53,7 @@ export default {
     },
     mounted() {
         console.log(this.$refs)
-        //this.scroller = this.$refs.listContainer
-        this.scroller = document.getElementById('listContainer')
+        this.scroller = this.$refs.listContainer
     },
     
     methods: {

@@ -31,6 +31,11 @@ export default {
             toast:false
         }
     },
+    activated(){
+       if(store.has('user')){
+           this.$router.push('/')
+       }
+    },
     watch:{
         account(val){
             if(val.length > 0){
@@ -59,7 +64,7 @@ export default {
                     account:this.account,
                     password:this.password
                 })
-                this.$router.push(this.$route.query.redirect)
+                this.$router.push(this.$route.query.redirect || '/home')
             }else{
                 this.toast = true
                 setTimeout(() => {

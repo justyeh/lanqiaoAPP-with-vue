@@ -11,7 +11,8 @@ import API from '../api'
 export default {
     data() {
         return {
-            news: ''
+            news: '',
+            title: ''
         }
     },
     activated() {
@@ -19,12 +20,11 @@ export default {
     },
     methods: {
         getDetail() {
+            let title = ''
             const id = this.$route.params.id
             this.$http.get(API.getDetail + id).then(res => {
-                this.news = res.data;
-                /*this.$nextTick(()=>{
-                    this.$route.meta.title = this.news.title
-                })*/
+                this.news = res.data
+                this.$route.meta.title = res.data.title
             })
         }
     }
@@ -39,10 +39,11 @@ export default {
     max-width: 100%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.22);
 }
+
 .new-detail-page * {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !important;
     line-height: 22px !important;
-    font-size:14px !important;
+    font-size: 14px !important;
     color: #888 !important;
 }
 </style>

@@ -87,7 +87,7 @@ body {
 }
 body {
     font-size: 14px;
-    background: #FFF;
+    background: #eee !important;
 }
 * {
     box-sizing: border-box;

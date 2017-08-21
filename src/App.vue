@@ -34,6 +34,15 @@ export default {
 
 
 <style>
+#app {
+  min-height: 100%;
+  padding-bottom: 56px;
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #fff;
+}
+
 .appbar {
   background:#04acf7;
   height:46px;
@@ -52,11 +61,7 @@ export default {
 }
 </style>
 <style>
-#app {
-  min-height: 100%;
-  padding-bottom: 56px;
-  position: relative;
-}
+
 /*
 .page-switch-enter-active, .page-switch-leave-active {
   transition: opacity .5s

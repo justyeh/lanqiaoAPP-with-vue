@@ -72,7 +72,7 @@
             <mu-list>
                 <mu-sub-header>{{editFiledName}}</mu-sub-header>
                 <template v-for="(item,index) in editSheet">
-                    <mu-list-item @click="updateSheetFiled(index)" :class="{curr:index == authInfo[editFiledKey]}" :title="item"/>
+                    <mu-list-item @click="updateSheetFiled(index)" :key="index" :class="{curr:index == authInfo[editFiledKey]}" :title="item"/>
                 </template>
             </mu-list>
         </mu-bottom-sheet>
@@ -219,6 +219,9 @@ export default {
 .sex-box{
     display: flex;
     align-items: center;
+}
+.sex-box .mu-radio{
+    margin-left:10px;
 }
 </style>
 

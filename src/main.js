@@ -57,9 +57,10 @@ import setDataStore from './dataStore';
 setDataStore()
 
 /* eslint-disable no-new */
-new Vue({
+window.app = new Vue({
     el: "#app",
     template: "<App/>",
     router,
     components: { App }
 });
+

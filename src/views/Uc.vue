@@ -12,9 +12,9 @@
             <mu-list-item title="我的订单" to="/uc/order">
                 <mu-icon value="reorder" slot="leftAvatar" />
             </mu-list-item>
-           <!--  <mu-list-item title="我的证书" to="/uc/certificate">
-                <mu-icon value="book" slot="leftAvatar" />
-            </mu-list-item> -->
+            <!--  <mu-list-item title="我的证书" to="/uc/certificate">
+                    <mu-icon value="book" slot="leftAvatar" />
+                </mu-list-item> -->
             <mu-list-item title="获奖记录" to="/uc/award">
                 <mu-icon value="card_membership" slot="leftAvatar" />
             </mu-list-item>
@@ -29,8 +29,8 @@
         <mu-list>
             <mu-sub-header>个人中心</mu-sub-header>
             <!--  <mu-list-item title="我的地址" to="/uc/address">
-                    <mu-icon value="place" slot="leftAvatar" />
-                </mu-list-item> -->
+                        <mu-icon value="place" slot="leftAvatar" />
+                    </mu-list-item> -->
             <mu-list-item title="账号设置" to="/uc/settings">
                 <mu-icon value="settings" slot="leftAvatar" />
             </mu-list-item>
@@ -38,7 +38,7 @@
                 <mu-icon value="sms" slot="leftAvatar" />
             </mu-list-item>
         </mu-list>
-    
+
     </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
         }
     },
     methods: {
-        logout(){
+        logout() {
             store.remove('user')
             this.$router.push('/login');
         }
@@ -76,7 +76,7 @@ export default {
 <style scoped>
 .user {
     padding: 36px 0;
-    background: #04acf7;
+    background: linear-gradient(to bottom, #04a5ec 0%,#04acf7 100%);
     text-align: center;
     position: relative;
 }
@@ -95,6 +95,7 @@ export default {
     top: 5px;
     right: 5px;
 }
+
 .name {
     color: #fff;
     font-size: 16px;

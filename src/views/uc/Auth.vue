@@ -13,7 +13,7 @@
         <mu-divider />
 
         <mu-list-item title="性别">
-            <div slot="right">
+            <div slot="right" class="sex-box">
                 <mu-radio label="男" name="sex" nativeValue="m" v-model="authInfo.sex" class="demo-radio" />
                 <mu-radio label="女" name="sex" nativeValue="w" v-model="authInfo.sex" class="demo-radio" />
             </div>
@@ -215,6 +215,10 @@ export default {
 }
 .mu-flat-button{
       min-width: 44px;
+}
+.sex-box{
+    display: flex;
+    align-items: center;
 }
 </style>
 

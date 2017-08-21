@@ -11,17 +11,25 @@
 </template>
 
 <script>
-import Bus from '../bus'
 export default {
   data() {
     return {
       footerMenu: 'home'
     }
   },
-  created() {
-    Bus.$on('updateMenu', menu => {
-      this.updateMenu(menu)
-    })
+  watch: {
+    $route() {
+      const fullPath = this.$route.fullPath;
+      if (fullPath.indexOf('news') > 0) {
+        this.footerMenu = 'news'
+        return
+      }
+      if (fullPath.indexOf('uc') > 0) {
+        this.footerMenu = 'uc'
+        return
+      }
+      this.footerMenu = 'home'
+    }
   },
   methods: {
     updateMenu(val) {

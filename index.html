@@ -26,6 +26,49 @@
 <body>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script>
+    var ws = null;
+    
+    if (window.plus) {
+      plusReady();
+    } else {
+      document.addEventListener("plusready", plusReady, false);
+    }
+
+    function plusReady() {
+      plus.key.addEventListener("backbutton", function () {
+        ws = plus.webview.currentWebview();
+        ws.canBack(function (event) {
+          if (event.canBack) {
+          	var fullPath = window.app.$route.fullPath
+          	if(fullPath == '/home' || fullPath == '/'){
+          		back();
+          		return;
+          	}
+            ws.back();
+          } else {
+            back();
+          }
+        });
+      });
+    }
+    var first = null;
+    var back = function () {
+      if (!first) {
+        first = (new Date()).getTime();
+        plus.nativeUI.toast('再按一次退出应用');
+        setTimeout(function () {
+          first = null;
+        }, 2000);
+      } else {
+        if ((new Date()).getTime() - first < 2000) {
+          ws.close()
+          plus.runtime.quit();
+        }
+      }
+    }
+  </script>
+ 
 </body>
 
 </html>
